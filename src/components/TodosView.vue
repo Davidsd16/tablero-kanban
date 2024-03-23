@@ -2,7 +2,7 @@
 
     import { reactive } from 'vue'; // Importa reactive de la librería Vue 3
 
-    
+
     // Definición de una variable reactiva 'boards' utilizando Vue 3 Composition API
     let boards = reactive([
         // Primer objeto que representa un tablero
@@ -18,14 +18,14 @@
                     // Generación de un ID único para el item utilizando la librería crypto
                     id: crypto.randomUUID(),
                     // Título del item
-                    titulo: "Feature de archivos"
+                    title: "Feature de archivos"
                 },
                 // Segundo item del tablero
                 {
                     // Generación de un ID único para el item utilizando la librería crypto
                     id: crypto.randomUUID(),
                     // Título del item
-                    titulo: "Resolver bug"
+                    title: "Resolver bug"
                 }
             ]
         },
@@ -42,14 +42,14 @@
                     // Generación de un ID único para el item utilizando la librería crypto
                     id: crypto.randomUUID(),
                     // Título del item
-                    titulo: "Mandar reporte"
+                    title: "Mandar reporte"
                 },
                 // Segundo item del tablero
                 {
                     // Generación de un ID único para el item utilizando la librería crypto
                     id: crypto.randomUUID(),
                     // Título del item
-                    titulo: "Code review"
+                    title: "Code review"
                 }
             ]
         }
@@ -78,7 +78,7 @@
                     <!-- Iteración sobre cada ítem del tablero -->
                     <div class="item" v-for="item in board.items" :key="item.id">
                         <!-- Título del ítem -->
-                        {{ item.titulo }}
+                        {{ item.title }}
                     </div>
                 </div>
             </div>
@@ -87,4 +87,19 @@
 </template>
 
 <!-- Este bloque contiene las reglas de estilo CSS específicas del componente -->
-<style scoped></style>
+<style scoped>
+    /* Estilos para los tableros */
+    .boards {
+        display: flex;
+        gap: 10px;
+        max-width: 300px;
+        margin-right: 20px;
+    }
+    /* Estilos para el contenedor de tableros */
+    .boards {
+        display: flex;
+        gap: 10px;
+        background: rgb(188, 211, 33);
+        padding: 10px;
+    }
+</style>
