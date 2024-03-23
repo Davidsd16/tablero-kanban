@@ -1,47 +1,18 @@
+<!-- Este bloque contiene la lógica del componente utilizando la sintaxis <script setup> -->
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+// Aquí se importa el componente TodoView desde el archivo './components/TodosView.vue'
+import TodoView from './components/TodosView.vue';
 </script>
 
+<!-- Este bloque contiene la estructura visual del componente -->
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+<!-- Aquí se define la estructura visual del componente -->
+<!-- Se incluye el componente TodoView dentro de este template -->
+<TodoView/>
 </template>
 
+<!-- Este bloque contiene las reglas de estilo CSS específicas del componente -->
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
+/* Aquí se pueden definir reglas de estilo CSS específicas del componente */
+/* El atributo scoped asegura que las reglas de estilo solo se apliquen al componente actual */
 </style>
