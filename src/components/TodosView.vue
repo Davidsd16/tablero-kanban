@@ -109,7 +109,7 @@
     }
     /* Estilos para los ítems */
     .item {
-        background: rgb(231, 231, 81);
+        background: rgb(255, 255, 80);
         padding: 10px;
         box-sizing: border-box;
     }
