@@ -58,10 +58,32 @@
 
     // Función para manejar la creación de un nuevo ítem
     function handleNewItem(text, board){
+        // Agrega un nuevo ítem al tablero especificado
         board.items.push({
+            // Genera un ID único para el ítem utilizando la librería crypto
             id: crypto.randomUUID(),
-            title: text // Corrige la propiedad del título del ítem
+            // Establece el título del ítem como el texto proporcionado
+            title: text
         })
+    }
+
+    // Función para manejar la creación de un nuevo tablero
+    function handleNewBoard(){
+        // Solicita al usuario el nombre del nuevo tablero mediante un cuadro de diálogo
+        const name = prompt('Name of the board')
+
+        // Verifica si se proporcionó un nombre válido para el tablero
+        if (name) { 
+            // Agrega un nuevo tablero a la lista de tableros
+            boards.push({
+                // Genera un ID único para el tablero utilizando la librería crypto
+                id: crypto.randomUUID(),
+                // Establece el nombre del tablero como el nombre proporcionado
+                name: name,
+                // Inicializa la lista de ítems del tablero como vacía
+                items: [],
+            });
+        }
     }
 </script>
 
@@ -71,7 +93,7 @@
     <nav>
         <ul>
             <!-- Botón para crear un nuevo tablero -->
-            <li><a href="#">Create board</a></li>
+            <li><a href="#" @click.prevent="handleNewBoard">Create board</a></li>
         </ul>
     </nav>
 
