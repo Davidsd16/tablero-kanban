@@ -1,8 +1,8 @@
+<!-- Importa reactive de la librería Vue 3 -->
 <script setup>
-
-    import { reactive } from 'vue'; // Importa reactive de la librería Vue 3
+    import { reactive } from 'vue';
+    // Importa el componente InputNew
     import InputNew from "./InputNew.vue";
-
 
     // Definición de una variable reactiva 'boards' utilizando Vue 3 Composition API
     let boards = reactive([
@@ -56,10 +56,13 @@
         }
     ]);
 
-    function handleNewItem(text){
-        console.log(text);
+    // Función para manejar la creación de un nuevo ítem
+    function handleNewItem(text, board){
+        board.items.push({
+            id: crypto.randomUUID(),
+            title: text // Corrige la propiedad del título del ítem
+        })
     }
-
 </script>
 
 <!-- Este bloque contiene la estructura visual del componente -->
@@ -67,6 +70,7 @@
     <!-- Aquí se define la estructura visual del componente -->
     <nav>
         <ul>
+            <!-- Botón para crear un nuevo tablero -->
             <li><a href="#">Create board</a></li>
         </ul>
     </nav>
@@ -79,8 +83,9 @@
             <div class="board" v-for="board in boards" :key="board.id">
                 <!-- Nombre del tablero -->
                 <div>{{ board.name }}</div>
-
-                <inputNew @on-new-item = handleNewItem />
+                
+                <!-- Componente InputNew para agregar nuevos ítems -->
+                <InputNew @on-new-item="(text) => handleNewItem(text, board)"/> 
 
                 <!-- Contenedor de ítems -->
                 <div class="items">
@@ -101,27 +106,26 @@
     .boards {
         display: flex;
         gap: 10px;
-      /*  padding: 40px; /* Ajusta el padding para separar los tableros */
     }
 
     /* Estilos para los tableros */
     .board {
         max-width: 300px;
         padding: 10px;
-        background:rgb(239, 20, 239)
+        background: rgb(239, 20, 239); /* Fondo de color para los tableros */
     }
 
+    /* Estilos para los ítems */
     .items {
         display: flex;
         flex-direction: column;
         gap: 5px;
     }
+
     /* Estilos para los ítems */
     .item {
         background: rgb(255, 255, 80);
         padding: 10px;
         box-sizing: border-box;
     }
-    
 </style>
-
