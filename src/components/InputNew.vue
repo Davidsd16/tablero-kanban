@@ -14,6 +14,8 @@
         if (text.value !== '') {
             // Si 'text' no está vacío, emite el evento 'onNewItem' con el valor de 'text'
             emits('onNewItem', text.value)
+
+            text.value = '';
         }
     }
 </script>

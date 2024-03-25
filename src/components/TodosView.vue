@@ -1,6 +1,7 @@
 <script setup>
 
     import { reactive } from 'vue'; // Importa reactive de la librería Vue 3
+    import InputNew from "./InputNew.vue";
 
 
     // Definición de una variable reactiva 'boards' utilizando Vue 3 Composition API
@@ -54,6 +55,11 @@
             ]
         }
     ]);
+
+    function handleNewItem(text){
+        console.log(text);
+    }
+
 </script>
 
 <!-- Este bloque contiene la estructura visual del componente -->
@@ -73,6 +79,9 @@
             <div class="board" v-for="board in boards" :key="board.id">
                 <!-- Nombre del tablero -->
                 <div>{{ board.name }}</div>
+
+                <inputNew @on-new-item = handleNewItem />
+
                 <!-- Contenedor de ítems -->
                 <div class="items">
                     <!-- Iteración sobre cada ítem del tablero -->
