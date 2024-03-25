@@ -88,18 +88,31 @@
 
 <!-- Este bloque contiene las reglas de estilo CSS específicas del componente -->
 <style scoped>
-    /* Estilos para los tableros */
-    .boards {
-        display: flex;
-        gap: 10px;
-        max-width: 300px;
-        margin-right: 20px;
-    }
     /* Estilos para el contenedor de tableros */
     .boards {
         display: flex;
         gap: 10px;
-        background: rgb(188, 211, 33);
-        padding: 10px;
+      /*  padding: 40px; /* Ajusta el padding para separar los tableros */
     }
+
+    /* Estilos para los tableros */
+    .board {
+        max-width: 300px;
+        padding: 10px;
+        background:rgb(239, 20, 239)
+    }
+
+    .items {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    /* Estilos para los ítems */
+    .item {
+        background: rgb(231, 231, 81);
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    
 </style>
+
