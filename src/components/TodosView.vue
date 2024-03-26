@@ -1,5 +1,6 @@
 <!-- Importa reactive de la librería Vue 3 -->
 <script setup>
+
     import { reactive } from 'vue';
     // Importa el componente InputNew
     import InputNew from "./InputNew.vue";
@@ -85,6 +86,16 @@
             });
         }
     }
+
+    function startDrag(event, boards, item){
+
+    }
+
+    function onDrop(event, destination){
+
+    }
+
+
 </script>
 
 <!-- Este bloque contiene la estructura visual del componente -->
@@ -102,7 +113,13 @@
         <!-- Contenedor de tableros -->
         <div class="boards">
             <!-- Iteración sobre cada tablero -->
-            <div class="board" v-for="board in boards" :key="board.id">
+            <div class="board"
+                @drop="onDrop($event, board, item)"
+                @dragovent.prevent
+                @dragevent.prevent
+                v-for="board in boards"
+                :key="board.id"
+            >
                 <!-- Nombre del tablero -->
                 <div>{{ board.name }}</div>
                 
@@ -112,7 +129,7 @@
                 <!-- Contenedor de ítems -->
                 <div class="items">
                     <!-- Iteración sobre cada ítem del tablero -->
-                    <div class="item" v-for="item in board.items" :key="item.id">
+                    <div class="item" draggable="true" @dragstart="startDrag()" v-for="item in board.items" :key="item.id">
                         <!-- Título del ítem -->
                         {{ item.title }}
                     </div>
