@@ -87,14 +87,20 @@
         }
     }
 
-    function startDrag(event, boards, item){
-
+    function startDrag(event, board, item){
+        event.dataTransfer.setData(
+            'text/plain',
+            JSON.stringify({ boardID: board.id, itemID: item.id})
+        );
     }
 
     function onDrop(event, destination){
-
+        const {boardId, itemID} = JSON.parse(
+            event.dataTransfer.getData('text/plain')
+        );
     }
 
+   // console.log(boardId, itemID);
 
 </script>
 
@@ -115,8 +121,7 @@
             <!-- Iteración sobre cada tablero -->
             <div class="board"
                 @drop="onDrop($event, board, item)"
-                @dragovent.prevent
-                @dragevent.prevent
+                @dragover.prevent
                 v-for="board in boards"
                 :key="board.id"
             >
@@ -129,7 +134,7 @@
                 <!-- Contenedor de ítems -->
                 <div class="items">
                     <!-- Iteración sobre cada ítem del tablero -->
-                    <div class="item" draggable="true" @dragstart="startDrag()" v-for="item in board.items" :key="item.id">
+                    <div class="item" draggable="true" @dragstart="startDrag($event, board, item)" v-for="item in board.items" :key="item.id">
                         <!-- Título del ítem -->
                         {{ item.title }}
                     </div>
