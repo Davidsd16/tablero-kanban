@@ -87,20 +87,25 @@
         }
     }
 
-    function startDrag(event, board, item){
-        event.dataTransfer.setData(
+    function startDrag(evt, board, item){
+        evt.dataTransfer.setData(
             'text/plain',
-            JSON.stringify({ boardID: board.id, itemID: item.id})
+            JSON.stringify({ boardId: board.id, itemId: item.id})
         );
     }
 
-    function onDrop(event, destination){
-        const {boardId, itemID} = JSON.parse(
-            event.dataTransfer.getData('text/plain')
+    function onDrop(evt, dest) {
+        const { boardId, itemId } = JSON.parse(
+            evt.dataTransfer.getData('text/plain')
         );
-    }
 
-   // console.log(boardId, itemID);
+        const originBoard = boards.find((item) => item.id === boardId);
+        
+        const originItem = originBoard.items.find((item) => item.id === itemId);
+
+        console.log(originBoard.name, originItem.title);
+}
+
 
 </script>
 
@@ -119,9 +124,11 @@
         <!-- Contenedor de tableros -->
         <div class="boards">
             <!-- Iteración sobre cada tablero -->
-            <div class="board"
-                @drop="onDrop($event, board, item)"
+            <div
+                class="board"
+                @drop="onDrop($event, board)"
                 @dragover.prevent
+                @dragenter.prevent
                 v-for="board in boards"
                 :key="board.id"
             >
@@ -134,7 +141,13 @@
                 <!-- Contenedor de ítems -->
                 <div class="items">
                     <!-- Iteración sobre cada ítem del tablero -->
-                    <div class="item" draggable="true" @dragstart="startDrag($event, board, item)" v-for="item in board.items" :key="item.id">
+                    <div 
+                        class="item"
+                        draggable="true"
+                        @dragstart="startDrag($event, board, item)"
+                        v-for="item in board.items"
+                        :key="item.id"
+                    >
                         <!-- Título del ítem -->
                         {{ item.title }}
                     </div>
