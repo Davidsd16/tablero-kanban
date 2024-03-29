@@ -29,5 +29,13 @@
 </template>
 
 <style scoped>
-    /* Estilos específicos del componente */
+
+    form {
+        margin-bottom: 10px;
+    }
+
+    input {
+        width: 100%;
+        box-sizing: border-box;
+    }
 </style>

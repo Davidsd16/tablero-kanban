@@ -182,6 +182,26 @@
 
 <!-- Este bloque contiene las reglas de estilo CSS específicas del componente -->
 <style scoped>
+
+    nav {
+        background-color: black;
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        list-style:none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+
+    nav ul li a{
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+    }
+
     /* Estilos para el contenedor de tableros */
     .boards {
         display: flex;
