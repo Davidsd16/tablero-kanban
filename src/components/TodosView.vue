@@ -99,12 +99,35 @@
             evt.dataTransfer.getData('text/plain')
         );
 
-        const originBoard = boards.find((item) => item.id === boardId);
+        const originBoard = boards.find((board) => board.id === boardId);
         
-        const originItem = originBoard.items.find((item) => item.id === itemId);
+        if (!originBoard) {
+            console.log("No se encontró ningún tablero con el ID especificado.");
+            return;
+        }
+        
+        const originItemIndex = originBoard.items.findIndex((item) => item.id === itemId);
 
-        console.log(originBoard.name, originItem.title);
+        if (originItemIndex === -1) {
+            console.log("No se encontró ningún elemento en el tablero con el ID especificado.");
+            return;
+        }
+
+        const originItem = originBoard.items[originItemIndex];
+
+        // Asegúrate de que dest.items sea una matriz
+        if (!Array.isArray(dest.items)) {
+            console.log("Destino no es una matriz de elementos.");
+            return;
+        }
+
+        // Agrega una copia del elemento al destino
+        dest.items.push({ ...originItem });
+
+        // Elimina el elemento del tablero original
+        originBoard.items.splice(originItemIndex, 1);
 }
+
 
 
 </script>
